@@ -1,5 +1,7 @@
 'use strict'
 
+require('dotenv').config()
+
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
@@ -38,6 +40,9 @@ app.get('/cats', function (req, res) {
 
 // Display the new cat form
 app.get('/cats/new', function (req, res) {
+  // RELEASE 2
+  // Use `cats.getCatPhotoLinks` to get six cat image links
+  // then pass them to the `cats/new` template and render it
   res.render('cats/new')
 })
 

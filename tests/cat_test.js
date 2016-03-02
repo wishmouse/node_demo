@@ -4,6 +4,7 @@ var test    = require('tape')
 var request = require('supertest')
 var fs      = require('fs')
 var path    = require('path')
+var request = require('supertest')
 
 var app  = require('../index')
 var cats = require('../cats')
@@ -36,4 +37,19 @@ test('findTheCats', function (t) {
 
   t.equal(results.cats && results.cats.length, 3, 'All cats found!')
   t.end()
+})
+
+test('GET /cats/new', function (t) {
+  request(app)
+    .get('/cats/new')
+    .expect(200)
+    .expect('Content-Type', /text\/html/)
+    .end(function (err, res) {
+      // res.text should be the output of your template
+      // write a test here to ensure that there are six images representing
+      // the six cats in your output. You'll probably want a Regex.
+
+      // console.log(res.text)
+      t.end()
+    })
 })
