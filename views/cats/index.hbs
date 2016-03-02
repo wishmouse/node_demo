@@ -9,3 +9,11 @@
   <li>{{this.name}}</li>
  {{/each}}
 </ul>
+
+<form method="POST" action="/cats/1?_method=DELETE">
+  <button type="submit">Delete 1</button>
+</form>
+
+<form method="POST" action="/cats/1?_method=PATCH">
+  <button type="submit">Update 1</button>
+</form>

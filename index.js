@@ -3,10 +3,11 @@
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
-var express    = require('express') // import express.js
-var hbs        = require('express-hbs') // handlebars
-var bodyParser = require('body-parser') // parse request bodies
-var path       = require('path') // work with file paths
+var express        = require('express') // import express.js
+var hbs            = require('express-hbs') // handlebars
+var bodyParser     = require('body-parser') // parse request bodies
+var path           = require('path') // work with file paths
+var methodOverride = require('method-override') // allow put, delete through post
 
 var app = express() // create the express application
 var server = require('http').createServer(app) // create the server
@@ -24,7 +25,7 @@ app.set('views', __dirname + '/views')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'public')))
-
+app.use(methodOverride('_method'))
 
 app.get('/', function (req, res) {
   res.redirect('/cats')
@@ -42,21 +43,36 @@ app.get('/cats/new', function (req, res) {
 
 // Show detail for cat with id === :id
 // Try going to /cats/1
-app.get('/cats/:id', function (req, res){
+app.get('/cats/:id', function (req, res) {
   res.end(JSON.stringify(req.params))
 })
 
 // Display the edit form for cat with id === :id
 // Try going to /cats/1/edit
-app.get('/cats/:id/edit', function (req, res){
+app.get('/cats/:id/edit', function (req, res) {
   res.end(JSON.stringify(req.params))
+})
+
+// Update the cat with id === :id
+// You can reach this with a PATCH or with a POST passing
+// a key-value pair: _method=PATCH
+// See the home page for an example
+app.patch('/cats/:id', function (req, res) {
+  res.end('You found the patch!')
+})
+
+// Delete the cat with id === :id
+// You can reach this with a DELETE or with a POST passing
+// a key-value pair: _method=DELETE
+// See the home page for an example
+app.delete('/cats/:id', function (req, res) {
+  res.end('You found the delete!')
 })
 
 // Handle the posted form data
 app.post('/cats', function (req, res) {
   res.end(JSON.stringify(req.body))
 })
-
 
 // Start the app only when run with npm start
 // Don't run it when imported into the tests
