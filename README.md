@@ -4,10 +4,13 @@
 
 Number | Name
 -------|------
-1 | REST
-2 | Express
-3 | Handlebars
-4 | Eugene
+1      | [REST](http://www.restapitutorial.com/lessons/whatisrest.html)
+2      | [Express](http://expressjs.com/)
+3      | [Handlebars](http://handlebarsjs.com/)
+4      | [Eugene](http://fuckafucka.com)
+5      | [fs](https://nodejs.org/api/fs.html) (file system)
+6      | [path](https://nodejs.org/api/path.html)
+7      | [tape](https://github.com/substack/tape)
 
 
 We're going to play with a fun project called [meowtown](http://meowtown.herokuapp.com/cats) that was written by [Eugene.](https://github.com/data-doge)
