@@ -1,4 +1,4 @@
-# Newtown
+# Nyantown
 
 We're going to extend [Meowtown](http://meowtown.herokuapp.com/cats) that was written by [Eugene](https://github.com/data-doge).
 
@@ -42,3 +42,4 @@ Number | Name
 7      | [tape](https://github.com/substack/tape)
 8      | [request](https://www.npmjs.com/package/request)
 9      | [Flickr API explorer](https://www.flickr.com/services/api/explore/flickr.photos.search)
+10     | [Nyancat](http://www.nyan.cat/original)
