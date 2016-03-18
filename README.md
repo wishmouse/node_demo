@@ -1,25 +1,8 @@
-# Meowtown
+# Newtown
 
-## Concepts
+We're going to extend [Meowtown](http://meowtown.herokuapp.com/cats) that was written by [Eugene](https://github.com/data-doge).
 
-Number | Name
--------|------
-1      | [REST](http://www.restapitutorial.com/lessons/whatisrest.html)
-2      | [Express](http://expressjs.com/)
-3      | [Handlebars](http://handlebarsjs.com/)
-4      | [Eugene](http://fuckafucka.com)
-5      | [fs](https://nodejs.org/api/fs.html) (file system)
-6      | [path](https://nodejs.org/api/path.html)
-7      | [tape](https://github.com/substack/tape)
-8      | [request](https://www.npmjs.com/package/request)
-9      | [Flickr API explorer](https://www.flickr.com/services/api/explore/flickr.photos.search)
-
-
-We're going to play with a fun project called [meowtown](http://meowtown.herokuapp.com/cats) that was written by [Eugene.](https://github.com/data-doge)
-
-Eugene is an EDA grad who went on to teach some of the course. He's a of blend of coder + artist + musician. He also has a very cool [website](http://fuckafucka.com) but it's down at the moment.
-
-Unfortunately Eugene's version of meowtown is written in rails. That's oldschool so we're going to improve things and rewrite it using node.
+We'll do this by using the flickr API to get more photos of cats, so the user doesn't have to provide their own link.
 
 ## Release 1
 
@@ -45,3 +28,17 @@ Then make the form work, so that the user can create a new cat, which gets saved
 
 Then go to `tests/cat-test.js` and finish the third test as directed (you're testing that your whole integrated call to `/cats/new` works).
 
+
+## Newtown
+
+Number | Name
+-------|------
+1      | [REST](http://www.restapitutorial.com/lessons/whatisrest.html)
+2      | [Express](http://expressjs.com/)
+3      | [Handlebars](http://handlebarsjs.com/)
+4      | [Eugene](http://fuckafucka.com)
+5      | [fs](https://nodejs.org/api/fs.html) (file system)
+6      | [path](https://nodejs.org/api/path.html)
+7      | [tape](https://github.com/substack/tape)
+8      | [request](https://www.npmjs.com/package/request)
+9      | [Flickr API explorer](https://www.flickr.com/services/api/explore/flickr.photos.search)
