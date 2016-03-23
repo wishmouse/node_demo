@@ -35,7 +35,7 @@ app.get('/', function (req, res) {
 
 // List all cats
 app.get('/cats', function (req, res) {
-  res.render('cats/index', cats)
+  res.render('cats/index', cats.data)
 })
 
 // Display the new cat form

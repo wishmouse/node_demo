@@ -2,7 +2,7 @@ var fs      = require('fs')
 var path    = require('path')
 var request = require('request')
 
-var cats = {
+var data = {
   cats: [
     { id: 1, name: 'Fluffy' },
     { id: 2, name: 'Tick' }
@@ -44,8 +44,8 @@ var getCatPhotoLinks = function (callback) {
   })
 }
 
-exports = module.exports = {
-  cats: cats,
+module.exports = {
+  data: data,
   dbPath: CAT_DB,
   saveTheCats: saveTheCats,
   findTheCats: findTheCats,
