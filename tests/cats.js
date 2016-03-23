@@ -22,21 +22,28 @@ var TEST_CATS = {
 var BLANK_DB = { cats: [] }
 
 test('saveTheCats', function (t) {
-  fs.writeFileSync(CAT_TEST_DB, JSON.stringify(BLANK_DB))
-  cats.saveTheCats(CAT_TEST_DB, TEST_CATS)
-
-  var results = fs.readFileSync(CAT_TEST_DB, 'utf-8')
-
-  t.equal(results, JSON.stringify(TEST_CATS), 'All cats saved!')
-  t.end()
+  fs.writeFile(CAT_TEST_DB, JSON.stringify(BLANK_DB), function (err) {
+    if (err) { return t.end(err) }
+    cats.saveTheCats(CAT_TEST_DB, TEST_CATS, function (err) {
+      t.error(err, 'No Error')
+      fs.readFile(CAT_TEST_DB, 'utf-8', function (err, results) {
+        if (err) { return t.end(err) }
+        t.equal(results, JSON.stringify(TEST_CATS), 'All cats saved!')
+        t.end()
+      })
+    })
+  })
 })
 
 test('findTheCats', function (t) {
-  fs.writeFileSync(CAT_TEST_DB, JSON.stringify(TEST_CATS))
-  var results = cats.findTheCats(CAT_TEST_DB)
-
-  t.equal(results.cats && results.cats.length, 3, 'All cats found!')
-  t.end()
+  fs.writeFile(CAT_TEST_DB, JSON.stringify(TEST_CATS), function (err) {
+    if (err) { return t.end(err) }
+    cats.findTheCats(CAT_TEST_DB, function (err) {
+      t.error(err, 'No error')
+      t.equal(results.cats && results.cats.length, 3, 'All cats found!')
+      t.end()
+    })
+  })
 })
 
 test('GET /cats/new', function (t) {

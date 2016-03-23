@@ -17,14 +17,14 @@ var CAT_DB = path.join(__dirname, 'db/cats.json')
 // Complete this function so that it converts the `cats`
 // object above to a JSON string and writes it to the
 // `db/cats.json` file.
-var saveTheCats = function (filename, cats) {
-  return false
+var saveTheCats = function (filename, cats, callback) {
+  callback(new Error("Not implemented yet."))
 }
 
 // Complete this function so that it reads the `db/cats.json`
 // file and returns its contents *as JSON*
-var findTheCats = function (filename) {
-  return false
+var findTheCats = function (filename, callback) {
+  callback(new Error("Not implemented yet."))
 }
 
 // ---------- RELEASE 2 ---------- //
