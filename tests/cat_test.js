@@ -4,39 +4,39 @@ var test    = require('tape')
 var request = require('supertest')
 var fs      = require('fs')
 var path    = require('path')
-var request = require('supertest')
 
 var app  = require('../index')
 var cats = require('../cats')
 
 var CAT_TEST_DB = path.join(__dirname, '../db/test_cats.json')
 
-var TEST_CATS = {
-  cats: [
+var TEST_CATS = [
     { id: 1, name: "Fluffy" },
     { id: 2, name: "Muffy" },
     { id: 3, name: "Morris"}
   ]
-}
 
-var BLANK_DB = { cats: [] }
+var BLANK_DB = []
 
 test('saveTheCats', function (t) {
   fs.writeFileSync(CAT_TEST_DB, JSON.stringify(BLANK_DB))
-  cats.saveTheCats(CAT_TEST_DB, TEST_CATS)
+  cats.saveTheCats(CAT_TEST_DB, TEST_CATS, function(err, data) {
+    var results = fs.readFileSync(CAT_TEST_DB, 'utf-8')
+    t.equal(results, JSON.stringify(TEST_CATS), 'All cats saved!')
+    t.error(err)
+    t.end()
+  })
 
-  var results = fs.readFileSync(CAT_TEST_DB, 'utf-8')
 
-  t.equal(results, JSON.stringify(TEST_CATS), 'All cats saved!')
-  t.end()
 })
 
 test('findTheCats', function (t) {
   fs.writeFileSync(CAT_TEST_DB, JSON.stringify(TEST_CATS))
-  var results = cats.findTheCats(CAT_TEST_DB)
-
-  t.equal(results.cats && results.cats.length, 3, 'All cats found!')
-  t.end()
+  cats.findTheCats(CAT_TEST_DB, function(err, data) {
+    t.equal(data && data.length, 3, 'All cats found!')
+    t.error(err)
+    t.end()
+  })
 })
 
 test('GET /cats/new', function (t) {
@@ -52,4 +52,5 @@ test('GET /cats/new', function (t) {
       // console.log(res.text)
       t.end()
     })
+
 })

@@ -1,30 +1,41 @@
 var fs      = require('fs')
 var path    = require('path')
 var request = require('request')
-
-var cats = {
-  cats: [
-    { id: 1, name: 'Fluffy' },
-    { id: 2, name: 'Tick' }
-  ]
-}
+var dotenv = require('dotenv')
+dotenv.load()
 
 // This is the filename for the cats db
 var CAT_DB = path.join(__dirname, 'db/cats.json')
+
+var cats = []
 
 // ---------- RELEASE 1 ---------- //
 
 // Complete this function so that it converts the `cats`
 // object above to a JSON string and writes it to the
 // `db/cats.json` file.
-var saveTheCats = function (filename, cats) {
-  return false
+var saveTheCats = function (filename, cats, callback) {
+
+  fs.writeFile(filename, JSON.stringify(cats), function(err, data) {
+    if (err) {
+      callback(err)
+      return
+    }
+    callback(null, data)
+  })
+
 }
 
 // Complete this function so that it reads the `db/cats.json`
 // file and returns its contents *as JSON*
-var findTheCats = function (filename) {
-  return false
+var findTheCats = function (filename, callback) {
+  fs.readFile(filename, 'utf8' , function(err, data) {
+    if (err) {
+      callback(err)
+      return
+    }
+    callback (null, JSON.parse(data))
+  })
 }
 
 // ---------- RELEASE 2 ---------- //
@@ -40,7 +51,11 @@ var query = [
 // Where you gonna call this from? What's the callback for?
 var getCatPhotoLinks = function (callback) {
   request.get(query, function(err, response, body) {
-    // Handle the error and return the body in the callback
+    if (err) {
+      callback(err)
+      return
+    }
+    callback(null, JSON.parse(body).photos.photo)
   })
 }
 
@@ -51,3 +66,4 @@ exports = module.exports = {
   findTheCats: findTheCats,
   getCatPhotoLinks: getCatPhotoLinks
 }
+
