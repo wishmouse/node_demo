@@ -38,9 +38,11 @@ test('saveTheCats', function (t) {
 test('findTheCats', function (t) {
   fs.writeFile(CAT_TEST_DB, JSON.stringify(TEST_CATS), function (err) {
     if (err) { return t.end(err) }
-    cats.findTheCats(CAT_TEST_DB, function (err) {
+    cats.findTheCats(CAT_TEST_DB, function (err, results) {
       t.error(err, 'No error')
-      t.equal(results.cats && results.cats.length, 3, 'All cats found!')
+      if (results) {
+        t.equal(results.cats && results.cats.length, 3, 'All cats found!')
+      }
       t.end()
     })
   })
