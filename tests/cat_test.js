@@ -4,6 +4,7 @@ var test    = require('tape')
 var request = require('supertest')
 var fs      = require('fs')
 var path    = require('path')
+var cheerio = require('cheerio')
 
 var app  = require('../index')
 var cats = require('../cats')
@@ -48,8 +49,10 @@ test('GET /cats/new', function (t) {
       // res.text should be the output of your template
       // write a test here to ensure that there are six images representing
       // the six cats in your output. You'll probably want a Regex.
+      var $ = cheerio.load(res.text)
+      var links = $('img')
 
-      // console.log(res.text)
+      t.equal(links.length, 6, "the number of links in the page is 6")
       t.end()
     })
 

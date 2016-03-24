@@ -4,16 +4,11 @@
   <a class="link" href="/cats/help">wuuut?</a>
 </nav>
 
-<ul>
+<ul id="cats">
  {{#each cats}}
-  <li>{{this.name}}</li>
+  <li>
+    <h3><span class="life-count">{{this.lives}}</span>{{this.name}}</h3><br>
+    <a href="/cats/{{this.id}}"><img src="{{image}}" alt = "{{name}}"></a>
+  </li>
  {{/each}}
 </ul>
-
-<form method="POST" action="/cats/1?_method=DELETE">
-  <button type="submit">Delete 1</button>
-</form>
-
-<form method="POST" action="/cats/1?_method=PATCH">
-  <button type="submit">Update 1</button>
-</form>

@@ -1,0 +1,22 @@
+<h1>Meowtown</h1>
+<nav>
+  <a class="link" href="/cats/">Homepage</a>
+</nav>
+
+<ul id = 'cats'>
+  <li>
+    <h3><span class="life-count">{{this.lives}}</span>{{name}}</h3><br>
+    <img src="{{image}}" alt = "{{name}}"><br><br>
+    {{life_story}}
+  </li>
+</ul>
+
+<footer>
+  <form method="GET" action="/cats/{{id}}/edit">
+    <button type="submit">Edit</button>
+  </form>
+
+  <form method="POST" action="/cats/{{id}}?_method=DELETE">
+    <button type="submit">Delete "/cats/{{id}}"</button>
+  </form>
+</footer>
