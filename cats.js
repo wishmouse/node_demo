@@ -6,35 +6,24 @@ dotenv.load()
 
 // This is the filename for the cats db
 var CAT_DB = path.join(__dirname, 'db/cats.json')
-
 var cats = []
 
 // ---------- RELEASE 1 ---------- //
 
 // Complete this function so that it converts the `cats`
-// object above to a JSON string and writes it to the
-// `db/cats.json` file.
-var saveTheCats = function (filename, cats, callback) {
-
-  fs.writeFile(filename, JSON.stringify(cats), function(err, data) {
-    if (err) {
-      callback(err)
-      return
-    }
-    callback(null, data)
+var saveTheCats = function (filename, allTheCats, callback) {
+  fs.writeFile(filename, JSON.stringify(allTheCats), function(err, savedCats) {
+    if (err) { throw err }
+    else     { callback(null, savedCats) }
   })
 
 }
 
 // Complete this function so that it reads the `db/cats.json`
-// file and returns its contents *as JSON*
 var findTheCats = function (filename, callback) {
-  fs.readFile(filename, 'utf8' , function(err, data) {
-    if (err) {
-      callback(err)
-      return
-    }
-    callback (null, JSON.parse(data))
+  fs.readFile(filename, 'utf8' , function(err, allTheCats) {
+    if (err) { throw err }
+    else     { callback (null, JSON.parse(allTheCats)) }
   })
 }
 
@@ -48,16 +37,13 @@ var query = [
 ].join('')
 
 // Complete this to get the photo links from Flickr.
-// Where you gonna call this from? What's the callback for?
 var getCatPhotoLinks = function (callback) {
   request.get(query, function(err, response, body) {
-    if (err) {
-      callback(err)
-      return
-    }
-    callback(null, JSON.parse(body).photos.photo)
+    if (err) { throw err }
+    else     {callback(null, JSON.parse(body).photos.photo) }
   })
 }
+
 
 exports = module.exports = {
   cats: cats,
@@ -66,4 +52,3 @@ exports = module.exports = {
   findTheCats: findTheCats,
   getCatPhotoLinks: getCatPhotoLinks
 }
-

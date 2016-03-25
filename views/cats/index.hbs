@@ -7,7 +7,7 @@
 <ul id="cats">
  {{#each cats}}
   <li>
-    <h3><span class="life-count">{{this.lives}}</span>{{this.name}}</h3><br>
+    <h3><span class="life-count">{{this.lives}} lives</span>{{this.name}}</h3><br>
     <a href="/cats/{{this.id}}"><img src="{{image}}" alt = "{{name}}"></a>
   </li>
  {{/each}}

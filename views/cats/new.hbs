@@ -1,14 +1,12 @@
 <h1>Cat Generator</h1>
 
-<form class="new_cat" id="new_cat" action="/cats"
-  accept-charset="UTF-8" method="POST">
+<form class="new_cat" id="new_cat" action="/cats" accept-charset="UTF-8" method="POST">
 
   <p>
     <input placeholder="name" type="text" name="name" id="cat_name">
   </p>
 
   <p>
-
     <div class="radio-toolbar">
       {{#each photos}}
           <input type="radio" id="{{this.id}}" name="catPhotos" value="https://farm{{this.farm}}.staticflickr.com/{{this.server}}/{{this.id}}_{{this.secret}}.jpg" />
@@ -16,14 +14,11 @@
             <img src='https://farm{{this.farm}}.staticflickr.com/{{this.server}}/{{this.id}}_{{this.secret}}.jpg' height=100 width=100>
           </label>
       {{/each}}
-
     </div>
-
   </p>
 
   <p>
-    <textarea placeholder="life story" name="life_story"
-      id="cat_life_story"></textarea>
+    <textarea placeholder="life story" name="life_story" id="cat_life_story"></textarea>
   </p>
 
   <p>
