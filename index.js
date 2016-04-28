@@ -38,6 +38,7 @@ app.get('/', function (req, res) {
 
 // List all cats [render]
 app.get('/cats', function (req, res) {
+
   cats.findTheCats(cats.dbPath, function(err, allTheCats){
     res.render('cats/index', {cats: allTheCats})
   })

@@ -4,6 +4,14 @@ var request = require('request')
 var dotenv = require('dotenv')
 dotenv.load()
 
+
+var data = {
+  cats: [
+    { id: 1, name: 'Fluffy' },
+    { id: 2, name: 'Tick' }
+  ]
+}
+
 // This is the filename for the cats db
 var CAT_DB = path.join(__dirname, 'db/cats.json')
 var cats = []
@@ -11,6 +19,7 @@ var cats = []
 // ---------- RELEASE 1 ---------- //
 
 // Complete this function so that it converts the `cats`
+
 var saveTheCats = function (filename, allTheCats, callback) {
   fs.writeFile(filename, JSON.stringify(allTheCats), function(err, savedCats) {
     if (err) { throw err }
@@ -25,6 +34,16 @@ var findTheCats = function (filename, callback) {
     if (err) { throw err }
     else     { callback (null, JSON.parse(allTheCats)) }
   })
+// object above to a JSON string and writes it to the
+// `db/cats.json` file.
+var saveTheCats = function (filename, cats, callback) {
+  callback(new Error("Not implemented yet."))
+}
+
+// Complete this function so that it reads the `db/cats.json`
+// file and returns its contents *as JSON*
+var findTheCats = function (filename, callback) {
+  callback(new Error("Not implemented yet."))
 }
 
 // ---------- RELEASE 2 ---------- //
@@ -45,8 +64,8 @@ var getCatPhotoLinks = function (callback) {
 }
 
 
-exports = module.exports = {
-  cats: cats,
+module.exports = {
+  data: data,
   dbPath: CAT_DB,
   saveTheCats: saveTheCats,
   findTheCats: findTheCats,
